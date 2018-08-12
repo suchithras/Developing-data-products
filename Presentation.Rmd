@@ -1,0 +1,50 @@
+Course Project: Shiny Application and Reproducible Pitch
+========================================================
+author: Suchithra  
+date: 12/08/2018 
+autosize: true
+
+The assignment
+========================================================
+
+* We will develop a shiny app using the R basic data set **trees**. 
+
+* As we will see in next slides, this dataset is pretty simple and we will use it to show linear regression model and how these models change depending on the values included in the regression model.  
+
+Exploratory Data Analysis
+========================================================
+
+* The dataset
+```{r summary, echo=FALSE}
+head(trees)
+str(trees)
+```
+
+
+Data correlation
+========================================================
+
+```{r, echo=FALSE, warnings = FALSE}
+library(ggplot2)
+library(gridExtra)
+g1 <- qplot(data = trees, x = Girth, y = Volume, color = Height)
+g2 <- qplot(data = trees, x = Girth, y = Height, color = Volume)
+grid.arrange(g1, g2, ncol = 1, nrow = 2)
+```
+
+We can see a clear correlation between the variables *Girth* and *Volume*. Lets see what happens if we fit a linear model and check the results.
+
+Conclusion 
+========================================================
+
+```{r, echo=FALSE}
+fit <- lm(Volume ~ Girth, data = trees)
+summary(fit)
+```
+
+* We have seen the correlation between *Girth* and *Volume*.
+
+
+
+Let's use shiny to build a little app that shows a simple shiny application.
+* The ui.R and server.R files can be found in my repository in [gitHubs](https://github.com/suchithras/Developing-data-products/tree/master)
